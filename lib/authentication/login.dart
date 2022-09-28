@@ -70,11 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     if (currentUser != null) {
       log('proceeding to read data and set data to locally');
-      await readDataAndSetDataLocally(currentUser!).then((value) {
-        Navigator.pop(context);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const HomeScreen()));
-      });
+      await readDataAndSetDataLocally(currentUser!);
     }
   }
 
@@ -86,7 +82,8 @@ class _LoginScreenState extends State<LoginScreen> {
     //     .get();
     // log('OUR DATA: $data');
 
-    print('========================${currentUser.uid}==================================');
+    // print(
+    //     '========================${currentUser.uid}==================================');
     await FirebaseFirestore.instance
         .collection("users")
         .doc(currentUser.uid)
